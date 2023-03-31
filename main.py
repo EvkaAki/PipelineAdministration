@@ -18,7 +18,8 @@ if __name__ == '__main__':
     response = requests.get("http://ml-pipeline:8888/apis/v1beta1/healthz")
     print(response)
     print(response.json())
-    response = requests.get("http://ml-pipeline:8888/apis/v1beta1/experiments", params={'resource_reference_key.type':'EXPERIMENT'})
+    params = {'resource_reference_key.type':'NAMESPACE', 'resource_reference_key.type' : 'admin'}
+    response = requests.get("http://ml-pipeline:8888/apis/v1beta1/experiments", params=params)
     print(response)
     print(response.json())
     app.run()
