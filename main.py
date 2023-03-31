@@ -1,6 +1,6 @@
 from flask import Flask, request, Response, abort
 import os
-import kfp
+import requests
 
 
 app = Flask(__name__)
