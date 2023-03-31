@@ -27,6 +27,7 @@ if __name__ == '__main__':
 #     print(response)
 #     print(response.json())
 #     app.run()
-    app.run()
     client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888")
     print(client.list_experiments())
+    app.run()
+
