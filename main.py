@@ -12,13 +12,9 @@ def index_action():
 @app.route('/list')
 def list_action():
     print('list')
-#     client = kfp.Client(host="http://ml-pipeline-ui-artifact:80")
-#
-#     print(client.list_experiments())
-#     sleep(90000000000)
 
 
 if __name__ == '__main__':
-    client = kfp.Client(host="http://ml-pipeline:8888")
-    print(client.list_experiments())
+    response = requests.get("http://ml-pipeline:8888/apis/v1beta1/healthz")
+    print(response)
     app.run()
