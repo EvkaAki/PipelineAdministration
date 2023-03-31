@@ -19,6 +19,6 @@ def list_action():
 
 
 if __name__ == '__main__':
-#     client = kfp.Client(host="http://ml-pipeline:8888")
-#     print(client.list_experiments())
+    client = kfp.Client(host="http://ml-pipeline:8888")
+    print(client.list_experiments())
     app.run()
