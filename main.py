@@ -28,7 +28,7 @@ if __name__ == '__main__':
 #     print(response.json())
 #     app.run()
 
-    with open(os.environ['KF_PIPELINES_SA_TOKEN_PATH'], "r") as f:
+    with open('var/run/secrets/kubernetes.io/serviceaccount/token', "r") as f:
         TOKEN = f.read()
     client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888")
     print(client.list_experiments())
