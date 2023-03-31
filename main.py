@@ -29,7 +29,9 @@ if __name__ == '__main__':
 #     app.run()
     f = open("/var/run/secrets/kubernetes.io/serviceaccount/token", "r")
     token = f.readline()
-    client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888", existing_token=token)
+    print(token)
+    credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
+    client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888", credentials=credentials)
     print(client.list_experiments())
     app.run()
 
