@@ -12,10 +12,7 @@ def index_action():
 @app.route('/list')
 def list_action():
     print('list')
-#     client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888")
-#
-#     print(client.list_experiments())
-#     sleep(90000000000)
+
 
 
 if __name__ == '__main__':
