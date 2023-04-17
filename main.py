@@ -20,7 +20,7 @@ if __name__ == '__main__':
     credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
     client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888", credentials=credentials)
     print(client.list_experiments(namespace="admin"))
-    app.run(host="localhost", port=3500, debug=True)
+    app.run(host="0.0.0.0", port=3500, debug=True)
 
 
 class LoggingMiddleware(object):
