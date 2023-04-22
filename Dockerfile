@@ -15,7 +15,7 @@ WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
 
-RUN apk update && apk add --no-cache sudo bash openrc openssh
+RUN apt-get update && apt-get add --no-cache sudo bash openrc openssh
 RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
 RUN mkdir -p /run/openrc && touch /run/openrc/softlevel && rc-update add sshd default
