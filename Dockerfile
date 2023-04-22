@@ -14,4 +14,10 @@ FROM python:3.7 AS backend-kubeflow-wheel
 WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
+
+RUN apk update && apk add --no-cache sudo bash openrc openssh
+RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
+RUN mkdir -p /run/openrc && touch /run/openrc/softlevel && rc-update add sshd default
+
 CMD ["python", "/app/main.py"]
