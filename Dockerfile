@@ -1,4 +1,4 @@
-FROM python:3.7 AS backend-kubeflow-wheel
+FROM python:3.7-alpine AS backend-kubeflow-wheel
 
 #WORKDIR /src
 #COPY ./components/crud-web-apps/common/backend .
@@ -15,7 +15,7 @@ WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
 
-RUN apt-get update && apt-get add --no-cache sudo bash openrc openssh
+RUN apk update && apk add --no-cache sudo bash openrc openssh
 RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
 RUN mkdir -p /run/openrc && touch /run/openrc/softlevel && rc-update add sshd default
