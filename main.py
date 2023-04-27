@@ -1,4 +1,4 @@
-from flask import Flask, request, Response, abort
+from flask import Flask, request, Response, abort, render_template
 import os
 import kfp
 import pprint
@@ -7,33 +7,25 @@ import pprint
 app = Flask(__name__)
 
 @app.route('/')
-def index_action():
-    return "<h1> Awesome DP </h1>"
+def researcher_action():
+    credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
+    client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888", credentials=credentials)
+    namespace = client.get_user_namespace()
+    pipelines = list_pipelines(namespace: namespace)
+    # return render_template('index.html')
 
-@app.route('/list')
-def list_action():
-    print('list')
+    return str(pipelines)
 
+
+@app.route('/admin')
+def admin_action():
+    credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
+    client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888", credentials=credentials)
+    namespace = client.get_user_namespace()
+
+    # return render_template('index.html')
+    return 'tralo'
 
 
 if __name__ == '__main__':
-    credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
-    client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888", credentials=credentials)
-    print(client.list_experiments(namespace="admin"))
     app.run(host="0.0.0.0", port=3500, debug=True)
-
-
-class LoggingMiddleware(object):
-    def __init__(self, app):
-        self._app = app
-
-    def __call__(self, env, resp):
-        errorlog = env['wsgi.errors']
-        pprint.pprint(('REQUEST', env), stream=errorlog)
-
-        def log_response(status, headers, *args):
-            pprint.pprint(('RESPONSE', status, headers), stream=errorlog)
-            return resp(status, headers, *args)
-
-        return self._app(env, log_response)
-
