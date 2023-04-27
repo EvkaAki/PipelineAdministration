@@ -13,7 +13,7 @@ def researcher_action():
     namespace = client.get_user_namespace()
     pipelines = client.list_pipelines('', 30, None, str(namespace)
     # return render_template('index.html')
-    return str(pipelines)
+    return pipelines
 
 
 @app.route('/admin')
