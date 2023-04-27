@@ -11,9 +11,8 @@ def researcher_action():
     credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
     client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888", credentials=credentials)
     namespace = client.get_user_namespace()
-    pipelines = list_pipelines(namespace: namespace)
+    list_pipelines(namespace=namespace)
     # return render_template('index.html')
-
     return str(namespace)
 
 
