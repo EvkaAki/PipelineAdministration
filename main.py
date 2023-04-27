@@ -14,7 +14,7 @@ def researcher_action():
     pipelines = list_pipelines(namespace: namespace)
     # return render_template('index.html')
 
-    return str(pipelines)
+    return str(namespace)
 
 
 @app.route('/admin')
