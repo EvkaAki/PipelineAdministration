@@ -1,1 +1,26 @@
-<h1>bumbac</h1>
+<head>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<h1>Pipelines</h1>
+
+<button class="mdc-button foo-button">
+    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__label">Button</span>
+</button>
+
+{% for pipeline in pipelines %}
+<a href="#">
+    <h2>{{ pipeline['name'] }}</h2>
+</a>
+<span class="badge badge-primary">{{ pipeline['created_at'] }}</span>
+<hr>
+{% endfor %}
+
+<script>
+    $(document).ready(function () {
+        mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
+    });
+</script>

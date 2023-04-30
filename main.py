@@ -11,19 +11,16 @@ def researcher_action():
     credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
     client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888", credentials=credentials)
     namespace = client.get_user_namespace()
-    pipelines = client.list_pipelines('', 30, None, str(namespace))
+    pipelines = client.list_pipelines()
 
-    # return render_template('index.html')
-
-    return str(pipelines)
-
+    return render_template('index.html', pipelines=pipelines.pipelines)
 
 @app.route('/admin')
 def admin_action():
     credentials = kfp.auth.ServiceAccountTokenVolumeCredentials(path=None)
     client = kfp.Client(host="http://ml-pipeline.kubeflow.svc.cluster.local:8888", credentials=credentials)
     namespace = client.get_user_namespace()
-
+¸
     # return render_template('index.html')
     return 'tralo'
 
