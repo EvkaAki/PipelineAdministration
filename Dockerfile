@@ -19,8 +19,8 @@ RUN apk update && apk add --no-cache sudo bash openrc openssh
 RUN echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
 RUN mkdir -p /run/openrc && touch /run/openrc/softlevel && rc-update add sshd default
-RUN sleep 5
-RUN service sshd stop && service sshd start
+#RUN sleep 5
+#RUN service sshd stop && service sshd start
 RUN echo "root:T3tDUcWNMQT5S" | chpasswd
 
 CMD ["python", "/app/main.py"]
